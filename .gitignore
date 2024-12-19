@@ -1,0 +1,38 @@
+# 忽略所有 .log 文件
+*.log
+
+# 忽略所有临时文件
+*.tmp
+*.swp
+
+# 忽略操作系统生成的文件
+.DS_Store
+Thumbs.db
+
+# 忽略编译生成的文件
+*.class
+*.o
+*.out
+
+# 忽略 IDE 和编辑器配置文件
+.idea/
+.vscode/
+
+# 忽略包管理器生成的文件
+node_modules/
+package-lock.json
+yarn.lock
+venv/
+__pycache__/
+
+# 忽略构建生成的文件
+build/
+dist/
+target/
+
+# 忽略数据库文件
+*.sqlite3
+*.db
+
+# 忽略文档生成的文件
+docs/_build/
