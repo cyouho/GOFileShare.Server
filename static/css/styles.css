@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+#file-list ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#file-list ul li {
+    margin: 5px 0;
+}
+
+#upload-form {
+    margin-top: 20px;
+}
+
+#upload-form input[type="file"] {
+    display: block;
+    margin-bottom: 10px;
+}
+
+#upload-form button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#upload-form button:hover {
+    background-color: #218838;
+}
