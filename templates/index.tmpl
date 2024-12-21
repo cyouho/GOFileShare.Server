@@ -99,15 +99,23 @@
 
     <!-- 文件列表 -->
     <ul class="file-list">
+        <!-- 先显示文件夹 -->
         {{range .Files}}
-        <li class="file-item">
             {{if .IsDir}}
-            <a href="/?path={{.Path}}" class="folder-icon">{{.Name}}/</a>
-            {{else}}
-            <span class="file-icon">{{.Name}}</span>
+            <li class="file-item">
+                <a href="/?path={{.Path}}" class="folder-icon">{{.Name}}/</a>
+            </li>
             {{end}}
-        </li>
+        {{end}}
+        
+        <!-- 再显示文件 -->
+        {{range .Files}}
+            {{if not .IsDir}}
+            <li class="file-item">
+                <span class="file-icon">{{.Name}}</span>
+            </li>
+            {{end}}
         {{end}}
     </ul>
 </body>
-</html> 
+</html>
