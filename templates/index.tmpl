@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        .breadcrumb {
+            display: flex;
+            list-style: none;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .breadcrumb li {
+            margin: 0;
+        }
+        .breadcrumb li:not(:last-child):after {
+            content: ">";
+            margin: 0 10px;
+            color: #6c757d;
+        }
+        .breadcrumb a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+        .file-list {
+            list-style: none;
+            padding: 0;
+        }
+        .file-item {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #f5f5f5;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+        }
+        .file-item a {
+            color: #2c3e50;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            width: 100%;
+        }
+        .file-item a:hover {
+            color: #3498db;
+        }
+        .folder-icon::before {
+            content: "📁";
+            margin-right: 10px;
+        }
+        .file-icon::before {
+            content: "📄";
+            margin-right: 10px;
+        }
+        .file-item span {
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+        }
+        .breadcrumbs {
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .breadcrumbs a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        .breadcrumbs a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>{{ .Title }}</h1>
+    
+    <!-- 面包屑导航 -->
+    <div class="breadcrumbs">
+        {{range $index, $crumb := .Breadcrumbs}}
+            {{if gt $index 0}} / {{end}}
+            <a href="/?path={{$crumb.path}}">{{$crumb.name}}</a>
+        {{end}}
+    </div>
+
+    <!-- 文件列表 -->
+    <ul class="file-list">
+        {{range .Files}}
+        <li class="file-item">
+            {{if .IsDir}}
+            <a href="/?path={{.Path}}" class="folder-icon">{{.Name}}/</a>
+            {{else}}
+            <span class="file-icon">{{.Name}}</span>
+            {{end}}
+        </li>
+        {{end}}
+    </ul>
+</body>
+</html> 

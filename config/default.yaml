@@ -1,0 +1,6 @@
+server:
+  port: 8080
+  # cert_file: "cert.pem" 暂时不使用证书文件 
+  # key_file: "key.pem" 暂时不使用证书文件
+
+shared_directory: "C:\\Users\\cyouh\\Desktop"  # 共享文件夹路径
