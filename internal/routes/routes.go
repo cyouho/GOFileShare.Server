@@ -9,35 +9,41 @@ import (
 
 // SetupRoutes 配置所有路由
 func SetupRoutes(r *gin.Engine) {
+	// 添加根路径重定向
+	r.GET("/", func(c *gin.Context) {
+		c.Redirect(http.StatusMovedPermanently, "/web/")
+	})
+
 	// 设置页面路由
-	setupPageRoutes(r)
+	setupWebRoutes(r)
 	// 设置文件处理路由
 	setupFileRoutes(r)
-	// Load HTML templates 加载HTML模板
-	r.LoadHTMLGlob("templates/*")
 }
 
-// setupPageRoutes 设置页面路由
-func setupPageRoutes(r *gin.Engine) {
-	// 主页路由
-	r.GET("/", func(c *gin.Context) {
-		path := c.Query("path")
-		files, err := api.ListFiles(path)
-		if err != nil {
-			c.HTML(http.StatusNotFound, "error.tmpl", gin.H{
-				"Error": "目录不存在",
-			})
-			return
-		}
+// setupWebRoutes 设置页面路由
+func setupWebRoutes(r *gin.Engine) {
+	web := r.Group("/web")
+	{
+		web.GET("/", func(c *gin.Context) {
+			path := c.Query("path")
+			files, err := api.ListFiles(path)
+			if err != nil {
+				c.HTML(http.StatusNotFound, "error.tmpl", gin.H{
+					"Error": "目录不存在",
+				})
+				return
+			}
 
-		breadcrumbs := api.GetBreadcrumbs(path)
-		c.HTML(200, "index.tmpl", gin.H{
-			"Title":       "共享文件",
-			"Files":       files,
-			"CurrentPath": path,
-			"Breadcrumbs": breadcrumbs,
+			breadcrumbs := api.GetBreadcrumbs(path)
+			c.HTML(200, "index.tmpl", gin.H{
+				"Title":       "共享文件",
+				"Files":       files,
+				"CurrentPath": path,
+				"Breadcrumbs": breadcrumbs,
+			})
 		})
-	})
+
+	}
 }
 
 // setupFileRoutes 设置文件处理路由
