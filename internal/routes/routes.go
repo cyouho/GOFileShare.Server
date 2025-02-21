@@ -28,14 +28,14 @@ func setupWebRoutes(r *gin.Engine) {
 			path := c.Query("path")
 			files, err := api.ListFiles(path)
 			if err != nil {
-				c.HTML(http.StatusNotFound, "error.tmpl", gin.H{
+				c.HTML(http.StatusNotFound, "error.html", gin.H{
 					"Error": "目录不存在",
 				})
 				return
 			}
 
 			breadcrumbs := api.GetBreadcrumbs(path)
-			c.HTML(200, "index.tmpl", gin.H{
+			c.HTML(200, "index.html", gin.H{
 				"Title":       "共享文件",
 				"Files":       files,
 				"CurrentPath": path,
