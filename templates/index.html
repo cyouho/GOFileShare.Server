@@ -93,7 +93,7 @@
     <div class="breadcrumbs">
         {{range $index, $crumb := .Breadcrumbs}}
             {{if gt $index 0}} / {{end}}
-            <a href="/?path={{$crumb.path}}">{{$crumb.name}}</a>
+            <a href="/web/?path={{$crumb.path}}">{{$crumb.name}}</a>
         {{end}}
     </div>
 
@@ -103,7 +103,7 @@
         {{range .Files}}
             {{if .IsDir}}
             <li class="file-item">
-                <a href="/?path={{.Path}}" class="folder-icon">{{.Name}}/</a>
+                <a href="/web/?path={{.Path}}" class="folder-icon">{{.Name}}/</a>
             </li>
             {{end}}
         {{end}}

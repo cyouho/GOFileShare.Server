@@ -108,7 +108,7 @@ func GetBreadcrumbs(path string) []map[string]string {
 	return breadcrumbs
 }
 
-// HandleFileRequestGin serves files requested via Gin
+// HandleFileRequestGin serves files requested via Gin 处理文件请求
 func HandleFileRequestGin(c *gin.Context) {
 	filename := c.Param("filename")
 

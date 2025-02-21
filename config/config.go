@@ -13,13 +13,14 @@ type Config struct {
 		// KeyFile  string `mapstructure:"key_file"` 暂时不使用证书文件
 	} `mapstructure:"server"`
 
-	SharedDirectory string `mapstructure:"shared_directory"`
+	WindowsSharedDirectory string `mapstructure:"windows_shared_directory"`
+	LinuxSharedDirectory   string `mapstructure:"linux_shared_directory"`
 }
 
 var Cfg *Config
 
 func init() {
-	viper.AddConfigPath("./config")
+	viper.AddConfigPath("../config")
 	viper.SetConfigName("default")
 	viper.SetConfigType("yaml")
 
