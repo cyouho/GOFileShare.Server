@@ -23,7 +23,7 @@ func main() {
 	api.AddSharedDir(sharedDir)
 
 	// Load HTML templates 加载HTML模板
-	r.LoadHTMLGlob("../templates/*")
+	r.LoadHTMLGlob("templates/*")
 
 	// 设置路由和模板
 	routes.SetupRoutes(r)
